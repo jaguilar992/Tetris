@@ -1,0 +1,16 @@
+table{
+  margin: 0px auto;
+}
+
+.cell{
+  margin: 0px auto;
+  width: 20px;
+  height: 20px;
+  border: solid 1px #F9A537;
+  padding: 0px;
+}
+
+.on{
+  background-color: #F9A537;
+}
+

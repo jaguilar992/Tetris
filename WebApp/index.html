@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Tetris</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <table id="tabla">
+    <tr>
+      <td id="c0" class="cell"></td>
+      <td id="c1" class="cell"></td>
+      <td id="c2" class="cell"></td>
+      <td id="c3" class="cell"></td>
+      <td id="c4" class="cell"></td>
+      <td id="c5" class="cell"></td>
+      <td id="c6" class="cell"></td>
+      <td id="c7" class="cell"></td>
+      <td id="c8" class="cell"></td>
+      <td id="c9" class="cell"></td>
+      <td id="c10" class="cell"></td>
+      <td id="c11" class="cell"></td>
+      <td id="c12" class="cell"></td>
+      <td id="c13" class="cell"></td>
+      <td id="c14" class="cell"></td>
+      <td id="c15" class="cell"></td>
+    </tr>
+    <tr>
+      <td id="c16" class="cell"></td>
+      <td id="c17" class="cell"></td>
+      <td id="c18" class="cell"></td>
+      <td id="c19" class="cell"></td>
+      <td id="c20" class="cell"></td>
+      <td id="c21" class="cell"></td>
+      <td id="c22" class="cell"></td>
+      <td id="c23" class="cell"></td>
+      <td id="c24" class="cell"></td>
+      <td id="c25" class="cell"></td>
+      <td id="c26" class="cell"></td>
+      <td id="c27" class="cell"></td>
+      <td id="c28" class="cell"></td>
+      <td id="c29" class="cell"></td>
+      <td id="c30" class="cell"></td>
+      <td id="c31" class="cell"></td>
+    </tr>
+    <tr>
+      <td id="c32" class="cell"></td>
+      <td id="c33" class="cell"></td>
+      <td id="c34" class="cell"></td>
+      <td id="c35" class="cell"></td>
+      <td id="c36" class="cell"></td>
+      <td id="c37" class="cell"></td>
+      <td id="c38" class="cell"></td>
+      <td id="c39" class="cell"></td>
+      <td id="c40" class="cell"></td>
+      <td id="c41" class="cell"></td>
+      <td id="c42" class="cell"></td>
+      <td id="c43" class="cell"></td>
+      <td id="c44" class="cell"></td>
+      <td id="c45" class="cell"></td>
+      <td id="c46" class="cell"></td>
+      <td id="c47" class="cell"></td>
+    </tr>
+    <tr>
+      <td id="c48" class="cell"></td>
+      <td id="c49" class="cell"></td>
+      <td id="c50" class="cell"></td>
+      <td id="c51" class="cell"></td>
+      <td id="c52" class="cell"></td>
+      <td id="c53" class="cell"></td>
+      <td id="c54" class="cell"></td>
+      <td id="c55" class="cell"></td>
+      <td id="c56" class="cell"></td>
+      <td id="c57" class="cell"></td>
+      <td id="c58" class="cell"></td>
+      <td id="c59" class="cell"></td>
+      <td id="c60" class="cell"></td>
+      <td id="c61" class="cell"></td>
+      <td id="c62" class="cell"></td>
+      <td id="c63" class="cell"></td>
+    </tr>
+    <tr>
+      <td id="c64" class="cell"></td>
+      <td id="c65" class="cell"></td>
+      <td id="c66" class="cell"></td>
+      <td id="c67" class="cell"></td>
+      <td id="c68" class="cell"></td>
+      <td id="c69" class="cell"></td>
+      <td id="c70" class="cell"></td>
+      <td id="c71" class="cell"></td>
+      <td id="c72" class="cell"></td>
+      <td id="c73" class="cell"></td>
+      <td id="c74" class="cell"></td>
+      <td id="c75" class="cell"></td>
+      <td id="c76" class="cell"></td>
+      <td id="c77" class="cell"></td>
+      <td id="c78" class="cell"></td>
+      <td id="c79" class="cell"></td>
+    </tr>
+    <tr>
+      <td id="c80" class="cell"></td>
+      <td id="c81" class="cell"></td>
+      <td id="c82" class="cell"></td>
+      <td id="c83" class="cell"></td>
+      <td id="c84" class="cell"></td>
+      <td id="c85" class="cell"></td>
+      <td id="c86" class="cell"></td>
+      <td id="c87" class="cell"></td>
+      <td id="c88" class="cell"></td>
+      <td id="c89" class="cell"></td>
+      <td id="c90" class="cell"></td>
+      <td id="c91" class="cell"></td>
+      <td id="c92" class="cell"></td>
+      <td id="c93" class="cell"></td>
+      <td id="c94" class="cell"></td>
+      <td id="c95" class="cell"></td>
+    </tr>
+    <tr>
+      <td id="c96" class="cell"></td>
+      <td id="c97" class="cell"></td>
+      <td id="c98" class="cell"></td>
+      <td id="c99" class="cell"></td>
+      <td id="c100" class="cell"></td>
+      <td id="c101" class="cell"></td>
+      <td id="c102" class="cell"></td>
+      <td id="c103" class="cell"></td>
+      <td id="c104" class="cell"></td>
+      <td id="c105" class="cell"></td>
+      <td id="c106" class="cell"></td>
+      <td id="c107" class="cell"></td>
+      <td id="c108" class="cell"></td>
+      <td id="c109" class="cell"></td>
+      <td id="c110" class="cell"></td>
+      <td id="c111" class="cell"></td>
+    </tr>
+    <tr>
+      <td id="c112" class="cell"></td>
+      <td id="c113" class="cell"></td>
+      <td id="c114" class="cell"></td>
+      <td id="c115" class="cell"></td>
+      <td id="c116" class="cell"></td>
+      <td id="c117" class="cell"></td>
+      <td id="c118" class="cell"></td>
+      <td id="c119" class="cell"></td>
+      <td id="c120" class="cell"></td>
+      <td id="c121" class="cell"></td>
+      <td id="c122" class="cell"></td>
+      <td id="c123" class="cell"></td>
+      <td id="c124" class="cell"></td>
+      <td id="c125" class="cell"></td>
+      <td id="c126" class="cell"></td>
+      <td id="c127" class="cell"></td>
+    </tr>
+    <tr>
+      <td id="c128" class="cell"></td>
+      <td id="c129" class="cell"></td>
+      <td id="c130" class="cell"></td>
+      <td id="c131" class="cell"></td>
+      <td id="c132" class="cell"></td>
+      <td id="c133" class="cell"></td>
+      <td id="c134" class="cell"></td>
+      <td id="c135" class="cell"></td>
+      <td id="c136" class="cell"></td>
+      <td id="c137" class="cell"></td>
+      <td id="c138" class="cell"></td>
+      <td id="c139" class="cell"></td>
+      <td id="c140" class="cell"></td>
+      <td id="c141" class="cell"></td>
+      <td id="c142" class="cell"></td>
+      <td id="c143" class="cell"></td>
+    </tr>
+    <tr>
+      <td id="c144" class="cell"></td>
+      <td id="c145" class="cell"></td>
+      <td id="c146" class="cell"></td>
+      <td id="c147" class="cell"></td>
+      <td id="c148" class="cell"></td>
+      <td id="c149" class="cell"></td>
+      <td id="c150" class="cell"></td>
+      <td id="c151" class="cell"></td>
+      <td id="c152" class="cell"></td>
+      <td id="c153" class="cell"></td>
+      <td id="c154" class="cell"></td>
+      <td id="c155" class="cell"></td>
+      <td id="c156" class="cell"></td>
+      <td id="c157" class="cell"></td>
+      <td id="c158" class="cell"></td>
+      <td id="c159" class="cell"></td>
+    </tr>
+    <tr>
+      <td id="c160" class="cell"></td>
+      <td id="c161" class="cell"></td>
+      <td id="c162" class="cell"></td>
+      <td id="c163" class="cell"></td>
+      <td id="c164" class="cell"></td>
+      <td id="c165" class="cell"></td>
+      <td id="c166" class="cell"></td>
+      <td id="c167" class="cell"></td>
+      <td id="c168" class="cell"></td>
+      <td id="c169" class="cell"></td>
+      <td id="c170" class="cell"></td>
+      <td id="c171" class="cell"></td>
+      <td id="c172" class="cell"></td>
+      <td id="c173" class="cell"></td>
+      <td id="c174" class="cell"></td>
+      <td id="c175" class="cell"></td>
+    </tr>
+    <tr>
+      <td id="c176" class="cell"></td>
+      <td id="c177" class="cell"></td>
+      <td id="c178" class="cell"></td>
+      <td id="c179" class="cell"></td>
+      <td id="c180" class="cell"></td>
+      <td id="c181" class="cell"></td>
+      <td id="c182" class="cell"></td>
+      <td id="c183" class="cell"></td>
+      <td id="c184" class="cell"></td>
+      <td id="c185" class="cell"></td>
+      <td id="c186" class="cell"></td>
+      <td id="c187" class="cell"></td>
+      <td id="c188" class="cell"></td>
+      <td id="c189" class="cell"></td>
+      <td id="c190" class="cell"></td>
+      <td id="c191" class="cell"></td>
+    </tr>
+    <tr>
+      <td id="c192" class="cell"></td>
+      <td id="c193" class="cell"></td>
+      <td id="c194" class="cell"></td>
+      <td id="c195" class="cell"></td>
+      <td id="c196" class="cell"></td>
+      <td id="c197" class="cell"></td>
+      <td id="c198" class="cell"></td>
+      <td id="c199" class="cell"></td>
+      <td id="c200" class="cell"></td>
+      <td id="c201" class="cell"></td>
+      <td id="c202" class="cell"></td>
+      <td id="c203" class="cell"></td>
+      <td id="c204" class="cell"></td>
+      <td id="c205" class="cell"></td>
+      <td id="c206" class="cell"></td>
+      <td id="c207" class="cell"></td>
+    </tr>
+    <tr>
+      <td id="c208" class="cell"></td>
+      <td id="c209" class="cell"></td>
+      <td id="c210" class="cell"></td>
+      <td id="c211" class="cell"></td>
+      <td id="c212" class="cell"></td>
+      <td id="c213" class="cell"></td>
+      <td id="c214" class="cell"></td>
+      <td id="c215" class="cell"></td>
+      <td id="c216" class="cell"></td>
+      <td id="c217" class="cell"></td>
+      <td id="c218" class="cell"></td>
+      <td id="c219" class="cell"></td>
+      <td id="c220" class="cell"></td>
+      <td id="c221" class="cell"></td>
+      <td id="c222" class="cell"></td>
+      <td id="c223" class="cell"></td>
+    </tr>
+    <tr>
+      <td id="c224" class="cell"></td>
+      <td id="c225" class="cell"></td>
+      <td id="c226" class="cell"></td>
+      <td id="c227" class="cell"></td>
+      <td id="c228" class="cell"></td>
+      <td id="c229" class="cell"></td>
+      <td id="c230" class="cell"></td>
+      <td id="c231" class="cell"></td>
+      <td id="c232" class="cell"></td>
+      <td id="c233" class="cell"></td>
+      <td id="c234" class="cell"></td>
+      <td id="c235" class="cell"></td>
+      <td id="c236" class="cell"></td>
+      <td id="c237" class="cell"></td>
+      <td id="c238" class="cell"></td>
+      <td id="c239" class="cell"></td>
+    </tr>
+    <tr>
+      <td id="c240" class="cell"></td>
+      <td id="c241" class="cell"></td>
+      <td id="c242" class="cell"></td>
+      <td id="c243" class="cell"></td>
+      <td id="c244" class="cell"></td>
+      <td id="c245" class="cell"></td>
+      <td id="c246" class="cell"></td>
+      <td id="c247" class="cell"></td>
+      <td id="c248" class="cell"></td>
+      <td id="c249" class="cell"></td>
+      <td id="c250" class="cell"></td>
+      <td id="c251" class="cell"></td>
+      <td id="c252" class="cell"></td>
+      <td id="c253" class="cell"></td>
+      <td id="c254" class="cell"></td>
+      <td id="c255" class="cell"></td>
+    </tr>
+    <tr>
+      <td id="c256" class="cell"></td>
+      <td id="c257" class="cell"></td>
+      <td id="c258" class="cell"></td>
+      <td id="c259" class="cell"></td>
+      <td id="c260" class="cell"></td>
+      <td id="c261" class="cell"></td>
+      <td id="c262" class="cell"></td>
+      <td id="c263" class="cell"></td>
+      <td id="c264" class="cell"></td>
+      <td id="c265" class="cell"></td>
+      <td id="c266" class="cell"></td>
+      <td id="c267" class="cell"></td>
+      <td id="c268" class="cell"></td>
+      <td id="c269" class="cell"></td>
+      <td id="c270" class="cell"></td>
+      <td id="c271" class="cell"></td>
+    </tr>
+    <tr>
+      <td id="c272" class="cell"></td>
+      <td id="c273" class="cell"></td>
+      <td id="c274" class="cell"></td>
+      <td id="c275" class="cell"></td>
+      <td id="c276" class="cell"></td>
+      <td id="c277" class="cell"></td>
+      <td id="c278" class="cell"></td>
+      <td id="c279" class="cell"></td>
+      <td id="c280" class="cell"></td>
+      <td id="c281" class="cell"></td>
+      <td id="c282" class="cell"></td>
+      <td id="c283" class="cell"></td>
+      <td id="c284" class="cell"></td>
+      <td id="c285" class="cell"></td>
+      <td id="c286" class="cell"></td>
+      <td id="c287" class="cell"></td>
+    </tr>
+    <tr>
+      <td id="c288" class="cell"></td>
+      <td id="c289" class="cell"></td>
+      <td id="c290" class="cell"></td>
+      <td id="c291" class="cell"></td>
+      <td id="c292" class="cell"></td>
+      <td id="c293" class="cell"></td>
+      <td id="c294" class="cell"></td>
+      <td id="c295" class="cell"></td>
+      <td id="c296" class="cell"></td>
+      <td id="c297" class="cell"></td>
+      <td id="c298" class="cell"></td>
+      <td id="c299" class="cell"></td>
+      <td id="c300" class="cell"></td>
+      <td id="c301" class="cell"></td>
+      <td id="c302" class="cell"></td>
+      <td id="c303" class="cell"></td>
+    </tr>
+    <tr>
+      <td id="c304" class="cell"></td>
+      <td id="c305" class="cell"></td>
+      <td id="c306" class="cell"></td>
+      <td id="c307" class="cell"></td>
+      <td id="c308" class="cell"></td>
+      <td id="c309" class="cell"></td>
+      <td id="c310" class="cell"></td>
+      <td id="c311" class="cell"></td>
+      <td id="c312" class="cell"></td>
+      <td id="c313" class="cell"></td>
+      <td id="c314" class="cell"></td>
+      <td id="c315" class="cell"></td>
+      <td id="c316" class="cell"></td>
+      <td id="c317" class="cell"></td>
+      <td id="c318" class="cell"></td>
+      <td id="c319" class="cell"></td>
+    </tr>
+    <tr>
+      <td id="c320" class="cell"></td>
+      <td id="c321" class="cell"></td>
+      <td id="c322" class="cell"></td>
+      <td id="c323" class="cell"></td>
+      <td id="c324" class="cell"></td>
+      <td id="c325" class="cell"></td>
+      <td id="c326" class="cell"></td>
+      <td id="c327" class="cell"></td>
+      <td id="c328" class="cell"></td>
+      <td id="c329" class="cell"></td>
+      <td id="c330" class="cell"></td>
+      <td id="c331" class="cell"></td>
+      <td id="c332" class="cell"></td>
+      <td id="c333" class="cell"></td>
+      <td id="c334" class="cell"></td>
+      <td id="c335" class="cell"></td>
+    </tr>
+    <tr>
+      <td id="c336" class="cell"></td>
+      <td id="c337" class="cell"></td>
+      <td id="c338" class="cell"></td>
+      <td id="c339" class="cell"></td>
+      <td id="c340" class="cell"></td>
+      <td id="c341" class="cell"></td>
+      <td id="c342" class="cell"></td>
+      <td id="c343" class="cell"></td>
+      <td id="c344" class="cell"></td>
+      <td id="c345" class="cell"></td>
+      <td id="c346" class="cell"></td>
+      <td id="c347" class="cell"></td>
+      <td id="c348" class="cell"></td>
+      <td id="c349" class="cell"></td>
+      <td id="c350" class="cell"></td>
+      <td id="c351" class="cell"></td>
+    </tr>
+    <tr>
+      <td id="c352" class="cell"></td>
+      <td id="c353" class="cell"></td>
+      <td id="c354" class="cell"></td>
+      <td id="c355" class="cell"></td>
+      <td id="c356" class="cell"></td>
+      <td id="c357" class="cell"></td>
+      <td id="c358" class="cell"></td>
+      <td id="c359" class="cell"></td>
+      <td id="c360" class="cell"></td>
+      <td id="c361" class="cell"></td>
+      <td id="c362" class="cell"></td>
+      <td id="c363" class="cell"></td>
+      <td id="c364" class="cell"></td>
+      <td id="c365" class="cell"></td>
+      <td id="c366" class="cell"></td>
+      <td id="c367" class="cell"></td>
+    </tr>
+    <tr>
+      <td id="c368" class="cell"></td>
+      <td id="c369" class="cell"></td>
+      <td id="c370" class="cell"></td>
+      <td id="c371" class="cell"></td>
+      <td id="c372" class="cell"></td>
+      <td id="c373" class="cell"></td>
+      <td id="c374" class="cell"></td>
+      <td id="c375" class="cell"></td>
+      <td id="c376" class="cell"></td>
+      <td id="c377" class="cell"></td>
+      <td id="c378" class="cell"></td>
+      <td id="c379" class="cell"></td>
+      <td id="c380" class="cell"></td>
+      <td id="c381" class="cell"></td>
+      <td id="c382" class="cell"></td>
+      <td id="c383" class="cell"></td>
+    </tr>
+  </table>
+  <script src="js/jquery.min.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/forma.js"></script>
+</body>
+</html>
