@@ -13,6 +13,9 @@ class Pieza:
   def bajar(self):
     self._y+=1
 
+  def subir(self):
+    self._y-=1
+
   def get_x(self):
     return self._x
   

@@ -1,6 +1,6 @@
 import os
 import time
-from max
+import max7219.led as led
 
 from pieza import Pieza
 
@@ -13,7 +13,8 @@ class Tablero:
     self.fils = FILS
     self.tablero = []
     self.copia_tablero = []
-    self.pieza = Pieza((4,5))
+    self.pieza = Pieza((4,0))
+    self.display = led.matrix(cascaded=2)
 
   def iniciar_tablero(self):
     self.tablero = []
@@ -23,11 +24,23 @@ class Tablero:
   def nueva_pieza(self):
     self.pieza.random()
 
+  def es_cuadro_vacio(self, x, y):
+    return self.tablero[y][x] != 1
+
+  def es_pieza_libre_bajar(self):
+    forma = self.pieza.get_forma()
+    results = []
+    for celda in forma:
+      x = celda[0] + self.pieza.get_x()
+      y = celda[1] + self.pieza.get_y() + 1
+      results.append(self.es_cuadro_vacio(x,y))
+    return not (False in results)
+
   def bajar_pieza(self):
-    posicion_vertical = self.pieza.get_y()
-    if(posicion_vertical + 1 < self.fils):
-      celda_baja = self.pieza.get_forma()[0][0]
-      if (self.tablero[celda_baja + posicion_vertical + 1]!=1):
+    y = self.pieza.get_y()
+    if(y + 1 < self.fils):
+      print self.es_pieza_libre_bajar()
+      if (self.es_pieza_libre_bajar()):
         self.pieza.bajar()
         return True
       else:
@@ -35,6 +48,9 @@ class Tablero:
     else:
       return False
 
+  def unir_pieza_tablero(self):
+    
+    for celda in self.pieza.get_forma():
 
 
 
@@ -52,28 +68,39 @@ class Tablero:
       self.copia_tablero.append(self.tablero[i][:])
     return self.copia_tablero
 
+  def get_id(self, i):
+    if (i<=8):
+      return 0
+    else:
+      return 1
+
+  def get_pos(self,i):
+    if (i<=8):
+      return i
+    else:
+      return i-8
+
+  def get_byte(self, fil):
+    return sum([self.copia_tablero[fil][i] * (2**(7-i)) for i in range(self.cols)])
+
   def imprimir_tablero(self):
+    self.display.clear()
     self.tablero_temporal()
     self.colocar_pieza()
-    
     for i in range(0, self.fils):
-      for j in range(self.cols):
-        if self.copia_tablero[i][j] == 0:
-          print "_",
-        else:
-          print "*",
-      print
+      self.display.set_byte(self.get_id(i+1), self.get_pos(i+1), self.get_byte(i))
 
 
 if __name__=='__main__':
   duo = Tablero()
   duo.iniciar_tablero()
   duo.nueva_pieza()
+  duo.tablero[7][4] = 1
 
   while True:
-    os.system("cls")
     duo.imprimir_tablero()
-    duo.bajar_pieza()
-    time.sleep(1)
+    baja = duo.bajar_pieza()
+    if not baja{
 
-  print duo.tablero
+    }
+    time.sleep(0.5)
