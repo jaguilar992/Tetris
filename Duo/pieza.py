@@ -17,7 +17,7 @@ class Pieza:
     self._x +=1
 
   def izquierda(self):
-    self._x +=1
+    self._x -=1
 
   def subir(self):
     self._y-=1

@@ -1,7 +1,7 @@
 import os
 import time
 import max7219.led as led
-
+from gpiozero import Button
 from pieza import Pieza
 
 COLS = 8
@@ -13,11 +13,11 @@ class Tablero:
     self.fils = FILS
     self.tablero = []
     self.copia_tablero = []
-    self.pieza = Pieza((0,0))
+    self.pieza = Pieza((1,0))
     self.display = led.matrix(cascaded=2)
+    self.btn_izquierda = Button(6)
+    self.btn_derecha   = Button(19)
 
-  def es_tablero_lleno(self):
-    return self.get_byte(0) != 0
 
   def iniciar_tablero(self):
     self.tablero = []
@@ -26,6 +26,9 @@ class Tablero:
 
   def nueva_pieza(self):
     self.pieza = Pieza((4,0))
+
+  def es_tablero_lleno(self):
+    return self.get_byte(0) != 0
 
   def es_cuadro_vacio(self, x, y):
     return self.tablero[y][x] != 1
@@ -56,28 +59,33 @@ class Tablero:
     results = []
     for celda in forma:
       x = celda[0] + self.pieza.get_x() - 1
-      if x ==0:
+      if x ==-1:
         results.append(False)
       else:
         y = celda[1] + self.pieza.get_y()
         results.append(self.es_cuadro_vacio(x,y))
     return not (False in results)
 
-  def bajar_pieza(self):
+  def pieza_abajo(self):
     print self.es_libre_izquierda()
     y = self.pieza.get_y()
     if(y + 1 < self.fils):
       if (self.es_libre_abajo()):
         self.pieza.bajar()
         return True
-      else:
-        return False
-    else:
-      return False
+      else: return False
+    else: return False
+
+  def pieza_derecha(self):
+    if self.es_libre_derecha():
+      self.pieza.derecha()
+
+  def pieza_izquierda(self):
+    if self.es_libre_izquierda():
+      self.pieza.izquierda()
 
   def unir_pieza_tablero(self):
     forma = self.pieza.get_forma()
-    print forma
     for celda in forma:
       x = celda[0] + self.pieza.get_x()
       y = celda[1] + self.pieza.get_y()
@@ -100,16 +108,12 @@ class Tablero:
     return self.copia_tablero
 
   def get_id(self, i):
-    if (i<=8):
-      return 0
-    else:
-      return 1
+    if (i<=8): return 0
+    else: return 1
 
   def get_pos(self,i):
-    if (i<=8):
-      return i
-    else:
-      return i-8
+    if (i<=8): return i
+    else: return i-8
 
   def get_byte(self, fil):
     return sum([self.copia_tablero[fil][i] * (2**(7-i)) for i in range(self.cols)])
@@ -123,19 +127,32 @@ class Tablero:
 
 
 if __name__=='__main__':
+# Start
   duo = Tablero()
   duo.iniciar_tablero()
-  duo.tablero[5][6] = 1
-
+  # duo.tablero[5][7] = 1
+# Loop
   while True:
     duo.imprimir_tablero()
-    baja = duo.bajar_pieza()
+    
+    if duo.btn_derecha.is_pressed:
+      duo.pieza_derecha()
+      duo.imprimir_tablero()
+    
+    if duo.btn_izquierda.is_pressed:
+      duo.pieza_izquierda()
+      duo.imprimir_tablero()
+
+    baja = duo.pieza_abajo()
     if not baja:
       duo.unir_pieza_tablero()
       duo.nueva_pieza()
-      if duo.es_tablero_lleno():
-        break
+      if duo.es_tablero_lleno(): break
     time.sleep(0.5)
+# End Loop
 
+# Fin
+  time.sleep(0.5)
   duo.display.clear()
-  duo.display.show_message("Fuera JOH", delay=0.08)
+  duo.display.show_message("Perdiste")
+# END
