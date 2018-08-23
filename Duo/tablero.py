@@ -13,8 +13,11 @@ class Tablero:
     self.fils = FILS
     self.tablero = []
     self.copia_tablero = []
-    self.pieza = Pieza((4,0))
+    self.pieza = Pieza((0,0))
     self.display = led.matrix(cascaded=2)
+
+  def es_tablero_lleno(self):
+    return self.get_byte(0) != 0
 
   def iniciar_tablero(self):
     self.tablero = []
@@ -22,12 +25,12 @@ class Tablero:
       self.tablero.append([0 for j in range(self.cols)])
 
   def nueva_pieza(self):
-    self.pieza.random()
+    self.pieza = Pieza((4,0))
 
   def es_cuadro_vacio(self, x, y):
     return self.tablero[y][x] != 1
 
-  def es_pieza_libre_bajar(self):
+  def es_libre_abajo(self):
     forma = self.pieza.get_forma()
     results = []
     for celda in forma:
@@ -36,11 +39,35 @@ class Tablero:
       results.append(self.es_cuadro_vacio(x,y))
     return not (False in results)
 
+  def es_libre_derecha(self):
+    forma = self.pieza.get_forma()
+    results = []
+    for celda in forma:
+      try:
+        x = celda[0] + self.pieza.get_x() + 1
+        y = celda[1] + self.pieza.get_y()
+        results.append(self.es_cuadro_vacio(x,y))
+      except IndexError as e:
+        results.append(False)
+    return not (False in results)
+
+  def es_libre_izquierda(self):
+    forma = self.pieza.get_forma()
+    results = []
+    for celda in forma:
+      x = celda[0] + self.pieza.get_x() - 1
+      if x ==0:
+        results.append(False)
+      else:
+        y = celda[1] + self.pieza.get_y()
+        results.append(self.es_cuadro_vacio(x,y))
+    return not (False in results)
+
   def bajar_pieza(self):
+    print self.es_libre_izquierda()
     y = self.pieza.get_y()
     if(y + 1 < self.fils):
-      print self.es_pieza_libre_bajar()
-      if (self.es_pieza_libre_bajar()):
+      if (self.es_libre_abajo()):
         self.pieza.bajar()
         return True
       else:
@@ -49,10 +76,14 @@ class Tablero:
       return False
 
   def unir_pieza_tablero(self):
+    forma = self.pieza.get_forma()
+    print forma
+    for celda in forma:
+      x = celda[0] + self.pieza.get_x()
+      y = celda[1] + self.pieza.get_y()
+      self.tablero[y][x] = 1
+    return True
     
-    for celda in self.pieza.get_forma():
-
-
 
 ##################################### Funciones de impresion
   def colocar_pieza(self):
@@ -94,13 +125,17 @@ class Tablero:
 if __name__=='__main__':
   duo = Tablero()
   duo.iniciar_tablero()
-  duo.nueva_pieza()
-  duo.tablero[7][4] = 1
+  duo.tablero[5][6] = 1
 
   while True:
     duo.imprimir_tablero()
     baja = duo.bajar_pieza()
-    if not baja{
-
-    }
+    if not baja:
+      duo.unir_pieza_tablero()
+      duo.nueva_pieza()
+      if duo.es_tablero_lleno():
+        break
     time.sleep(0.5)
+
+  duo.display.clear()
+  duo.display.show_message("Fuera JOH", delay=0.08)
