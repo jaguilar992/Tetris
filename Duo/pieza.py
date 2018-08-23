@@ -19,8 +19,10 @@ class Pieza:
   def izquierda(self):
     self._x -=1
 
-  def subir(self):
-    self._y-=1
+  def rota(self):
+    self._rotacion += 1
+    if self._rotacion > 3:
+      self._rotacion = 0
 
   def get_x(self):
     return self._x

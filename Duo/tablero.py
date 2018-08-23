@@ -13,9 +13,12 @@ class Tablero:
     self.fils = FILS
     self.tablero = []
     self.copia_tablero = []
-    self.pieza = Pieza((1,0))
+    self.pieza = Pieza((4,0))
     self.display = led.matrix(cascaded=2)
+    
+    self.btn_rotacion = Button(5)
     self.btn_izquierda = Button(6)
+    self.btn_abajo = Button(13)
     self.btn_derecha   = Button(19)
 
 
@@ -67,7 +70,6 @@ class Tablero:
     return not (False in results)
 
   def pieza_abajo(self):
-    print self.es_libre_izquierda()
     y = self.pieza.get_y()
     if(y + 1 < self.fils):
       if (self.es_libre_abajo()):
@@ -83,6 +85,9 @@ class Tablero:
   def pieza_izquierda(self):
     if self.es_libre_izquierda():
       self.pieza.izquierda()
+
+  def pieza_rota(self):
+    self.pieza.rota()
 
   def unir_pieza_tablero(self):
     forma = self.pieza.get_forma()
@@ -133,6 +138,8 @@ if __name__=='__main__':
   # duo.tablero[5][7] = 1
 # Loop
   while True:
+    delay = 0.5
+
     duo.imprimir_tablero()
     
     if duo.btn_derecha.is_pressed:
@@ -143,12 +150,19 @@ if __name__=='__main__':
       duo.pieza_izquierda()
       duo.imprimir_tablero()
 
+    if duo.btn_rotacion.is_pressed:
+      duo.pieza_rota()
+      duo.imprimir_tablero()
+
+    if duo.btn_abajo.is_pressed:
+      delay = 0.1
+
     baja = duo.pieza_abajo()
     if not baja:
       duo.unir_pieza_tablero()
       duo.nueva_pieza()
       if duo.es_tablero_lleno(): break
-    time.sleep(0.5)
+    time.sleep(delay)
 # End Loop
 
 # Fin
