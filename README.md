@@ -9,4 +9,5 @@
 
 **Keywords**: *Microprocesadores, MAX7219, LEDS, Matrices, Python, RPi 3+*
 
-![Foto](http://https://naylampmechatronics.com/1103-large_default/kit-matriz-led-max7219.jpg)
+![Foto](https://images-na.ssl-images-amazon.com/images/I/61cNz%2BJgnML.png)
+![Raspberry](https://k62.kn3.net/taringa/3/8/C/7/C/D/akak92/F9B.png)
