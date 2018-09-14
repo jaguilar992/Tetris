@@ -49,8 +49,8 @@ var l = new forma(-1,10);
 l.setForma('te');
 l.print();
 
-// setInterval(function(){
-//   cls();
-//   l.fil=l.fil+1
-//   l.print()
-// }, 1000);
+setInterval(function(){
+  cls();
+  l.fil=l.fil+1
+  l.print()
+}, 1000);
